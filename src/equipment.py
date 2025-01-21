@@ -15,6 +15,10 @@ class WandererRotatorLite:
         self.serial_connection.write(cmd.encode())
         time.sleep(1.2)  # Simulate delay
         response = self.serial_connection.readline().decode().strip()
+        if response:
+            print(f"Response: {response}")
+        else:
+            print("No response received")
         return response
 
     def move_rotator(self, angle):
