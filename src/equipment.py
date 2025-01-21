@@ -12,6 +12,7 @@ class WandererRotatorLite:
         self.halt_command = False
 
     def send_command(self, cmd):
+        print(f"Command: {cmd}")
         self.serial_connection.write(cmd.encode())
         time.sleep(1.2)  # Simulate delay
         response = self.serial_connection.readline().decode().strip()

@@ -10,6 +10,7 @@ def print_menu():
     print("6. Reverse Rotator")
     print("7. Abort Rotator")
     print("8. Timer Hit")
+    print("9. Home Rotator")
     print("9. Exit")
 
 def main():
@@ -67,7 +68,7 @@ def main():
                     print("Invalid choice. Please try again.")
             except Exception as e:
                 print(f"An error occurred: {e}")
-    
+
     finally:
         try:
             rotator.close()
