@@ -13,7 +13,7 @@ def print_menu():
     print("9. Exit")
 
 def main():
-    rotator = WandererRotatorLite(port='/dev/ttyUSB0', baudrate=19200)
+    rotator = WandererRotatorLite(port='/dev/rotator', baudrate=19200)
     
     try:
         while True:
