@@ -57,13 +57,17 @@ def main():
                     rotator.timer_hit()
 
                 elif choice == '9':
+                    rotator.home_rotator()
+                    print("Rotator homed")
+
+                elif choice == '10':
                     break
 
                 else:
                     print("Invalid choice. Please try again.")
             except Exception as e:
                 print(f"An error occurred: {e}")
-
+    
     finally:
         try:
             rotator.close()

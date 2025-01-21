@@ -60,5 +60,13 @@ class WandererRotatorLite:
         # Simulate periodic tasks
         print("Timer hit: Performing periodic tasks")
 
+    def home_rotator(self):
+        angle = -1 * self.reverse_coefficient * self.position
+        self.position_history = angle
+        position = int(angle * 1155)
+        cmd = f"{position}"
+        self.send_command(cmd)
+        return "IPS_BUSY"   
+
     def close(self):
         self.serial_connection.close()
