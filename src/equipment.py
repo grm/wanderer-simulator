@@ -36,7 +36,30 @@ class WandererRotatorLite:
         position = int(self.reverse_coefficient * angle * 1155)
         self.position_history = angle
         cmd = f"{position}"
-        self.send_command(cmd)
+        
+        # Send command and wait for two responses
+        print(f"Command: {cmd}")
+        self.serial_connection.write(cmd.encode())
+        time.sleep(1.2)  # Simulate delay
+        
+        response1 = None
+        response2 = None
+        
+        while not response1 or not response2:
+            if not response1:
+                response1 = self.serial_connection.readline().decode().strip()
+                if response1:
+                    print(f"Response 1: {response1}")
+                else:
+                    print("No response received for Response 1")
+            
+            if not response2:
+                response2 = self.serial_connection.readline().decode().strip()
+                if response2:
+                    print(f"Response 2: {response2}")
+                else:
+                    print("No response received for Response 2")
+        
         self.position += angle
 
     def set_home_position(self):
