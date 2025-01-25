@@ -79,6 +79,24 @@ class WandererRotatorLite:
 
     def handshake(self):
         self.send_command("1500001")
+        response1 = None
+        response2 = None
+        response3 = None
+        
+        while not response1 or not response2 or not response3:
+            response = self.serial_connection.readline().decode().strip()
+            if response:
+            if not response1:
+                response1 = response
+                print(f"Response 1: {response1}")
+            elif not response2:
+                response2 = response
+                print(f"Response 2: {response2}")
+            elif not response3:
+                response3 = response
+                print(f"Response 3: {response3}")
+            else:
+                print("No valid response received")
 
     def timer_hit(self):
         # Simulate periodic tasks
