@@ -78,26 +78,20 @@ class WandererRotatorLite:
         self.send_command("HALT")
 
     def handshake(self):
-        self.send_command("1500001")
-        response1 = None
-        response2 = None
-        response3 = None
-        
-        while not response1 or not response2 or not response3:
-            response = self.serial_connection.readline().decode().strip()
-            if 'A' in response:
-                parts = response.split('A')
-                if len(parts) >= 3:
-                    response1 = parts[0].strip()
-                    response2 = parts[1].strip()
-                    response3 = parts[2].strip()
-                    print(f"Response 1: {response1}")
-                    print(f"Response 2: {response2}")
-                    print(f"Response 3: {response3}")
-                else:
-                    print("Not enough parts in response")
+        response = self.send_command("1500001")
+        if 'A' in response:
+            parts = response.split('A')
+            if len(parts) >= 3:
+                response1 = parts[0].strip()
+                response2 = parts[1].strip()
+                response3 = parts[2].strip()
+                print(f"Response 1: {response1}")
+                print(f"Response 2: {response2}")
+                print(f"Response 3: {response3}")
             else:
-                print("No valid response received")
+                print("Not enough parts in response")
+        else:
+            print("No valid response received")
 
     def timer_hit(self):
         # Simulate periodic tasks
