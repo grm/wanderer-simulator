@@ -11,7 +11,7 @@ def print_menu():
     print("7. Abort Rotator")
     print("8. Timer Hit")
     print("9. Home Rotator")
-    print("9. Exit")
+    print("10. Exit")
 
 def main():
     rotator = WandererRotatorLite(port='/dev/rotator', baudrate=19200)
