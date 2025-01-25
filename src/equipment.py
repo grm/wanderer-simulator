@@ -46,20 +46,15 @@ class WandererRotatorLite:
         response2 = None
         
         while not response1 or not response2:
-            if not response1:
-                response1 = self.serial_connection.readline().decode().strip()
-                if response1:
-                    print(f"Response 1: {response1}")
-                else:
-                    print("No response received for Response 1")
-            
-            if not response2:
-                response2 = self.serial_connection.readline().decode().strip()
-                if response2:
-                    print(f"Response 2: {response2}")
-                else:
-                    print("No response received for Response 2")
-        
+            response = self.serial_connection.readline().decode().strip()
+            if 'A' in response:
+                response1, response2 = response.split('A', 1)
+                response1 = response1.strip()
+                response2 = response2.strip()
+                print(f"Response 1: {response1}")
+                print(f"Response 2: {response2}")
+            else:
+                print("No valid response received")
         self.position += angle
 
     def set_home_position(self):
